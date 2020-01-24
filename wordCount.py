@@ -54,6 +54,7 @@ for category in brown.categories():
     print(types.most_common(5))
     print('\n')
 
+print('Calculating total vocabulary...')
 print(
     'And the size of the total vocabulary is '
     + str(len(FreqDist(all_words if mode == '1' else filter_text(all_words, mode == '3', mode == '4')))))
