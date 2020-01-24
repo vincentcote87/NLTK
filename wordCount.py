@@ -4,6 +4,9 @@ from nltk.stem import WordNetLemmatizer, PorterStemmer
 from nltk.probability import FreqDist
 import nltk
 
+nltk.download('wordnet')
+nltk.download('stopwords')
+
 lemmatizer = WordNetLemmatizer()
 ps = PorterStemmer()
 
