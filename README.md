@@ -19,7 +19,7 @@ from nltk.corpus import stopwords
 from nltk.corpus import brown
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 from nltk.probability import FreqDist
-import ntlk
+import nltk
 
 ntlk.download('<NAME_OF_CORPUS>')
 ```

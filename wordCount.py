@@ -2,7 +2,7 @@ from nltk.corpus import stopwords
 from nltk.corpus import brown
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 from nltk.probability import FreqDist
-import ntlk
+import nltk
 
 lemmatizer = WordNetLemmatizer()
 ps = PorterStemmer()
