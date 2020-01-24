@@ -2,7 +2,7 @@ from nltk.corpus import stopwords
 from nltk.corpus import brown
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 from nltk.probability import FreqDist
-
+import ntlk
 
 lemmatizer = WordNetLemmatizer()
 ps = PorterStemmer()
@@ -24,10 +24,14 @@ def filter_text(word_list, lemmatized=False, stemmed=False):
     return new_list
 
 def promptUser():
-    return input(
-            "Options:\n1)With stopwords\n2)Without stopwords\n3)Without stopwords and lemmatization\n4)Without stopwords and stemming\n" +
-            "Please choose an mode: "
-            )
+    return input( '''
+        Options:
+        1)With stopwords
+        2)Without stopwords
+        3)Without stopwords and lemmatization
+        4)Without stopwords and stemming
+        Please choose an mode:
+        ''')
 
 while True:
     mode = promptUser()
@@ -50,4 +54,6 @@ for category in brown.categories():
     print(types.most_common(5))
     print('\n')
 
-print('And the size of the total vocabulary is ' + str(len(FreqDist(all_words))))
+print(
+    'And the size of the total vocabulary is '
+    + str(len(FreqDist(all_words if mode == '1' else filter_text(all_words, mode == '3', mode == '4')))))
