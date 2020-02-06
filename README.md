@@ -1,5 +1,5 @@
-# NLTK_Assn1
-CPSC 4310 Assignment #1
+# NLTK
+CPSC 4310
 
 If you are missing a corpus please use either one of the two methods:
 
