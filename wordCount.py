@@ -1,3 +1,6 @@
+# CPSC4310 Assignment #1 Question 5
+# By Vincent Cote
+
 from nltk.corpus import stopwords
 from nltk.corpus import brown
 from nltk.stem import WordNetLemmatizer, PorterStemmer
