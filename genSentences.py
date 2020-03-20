@@ -51,12 +51,12 @@ while True:
 sentences = brown.sents(categories=cat[int(catChoice)])
 ngram_list = []
 for sent in sentences:
-    # Convert the senteces using bigram or trigram mode
+    # Convert the sentences using bigram or trigram mode
     x = ngrams(sent, 2 if mode == '0' else 3, True, True, '<s>', '</s>')
     for i in x:
         ngram_list.append(i)
 
-# Shuffle the list to randomize the senteces
+# Shuffle the list to randomize the sentences
 shuffle(ngram_list)
 if mode == '0':
     for i in range(len(ngram_list)):
