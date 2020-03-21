@@ -3,6 +3,50 @@ from nltk import word_tokenize
 from nltk import FreqDist
 from nltk.corpus import brown
 
+cat2 = False
+
+# To calculate similarities between documents of the same category only
+# uncomment one category from the first list (cat). To calculate
+# similarities between two complete categories uncomment one of
+# the first list (cat) and one from the second list (cat2)
+
+cat = 'news'
+# cat = 'editorial'
+# cat = 'reviews'
+# cat = 'religion'
+# cat = 'hobbies'
+# cat = 'lore'
+# cat = 'belle_lettres'
+# cat = 'government'
+# cat = 'learned'
+# cat = 'fiction'
+# cat = 'mystery'
+# cat = 'science_fiction'
+# cat = 'adventrue'
+# cat = 'romance'
+# cat = 'humor'
+
+# cat2 = 'news'
+# cat2 = 'editorial'
+# cat2 = 'reviews'
+# cat2 = 'religion'
+# cat2 = 'hobbies'
+# cat2 = 'lore'
+# cat2 = 'belle_lettres'
+# cat2 = 'government'
+# cat2 = 'learned'
+# cat2 = 'fiction'
+# cat2 = 'mystery'
+# cat2 = 'science_fiction'
+# cat2 = 'adventrue'
+# cat2 = 'romance'
+# cat2 = 'humor'
+
+# To compare different documents within the cluster change the index
+# value for doc1 and doc2
+doc1 = 0
+doc2 = 1
+
 def get_word_matrix(words):
     list = []
     # print(words)
@@ -74,29 +118,21 @@ def cosine(d1,d2):
         i += 1
     return (sum/(math.sqrt(d1d) * math.sqrt(d2d))) if d1d > 0 or d2d > 0 else 0
 
-# To calculate similarities between documents of the same category uncomment one of the
-# following categories:
 
-# cat = 'news'
-# cat = 'editorial'
-# cat = 'reviews'
-# cat = 'religion'
-# cat = 'hobbies'
-# cat = 'lore'
-# cat = 'belle_lettres'
-cat = 'government'
-# cat = 'learned'
-# cat = 'fiction'
-# cat = 'mystery'
-# cat = 'science_fiction'
-# cat = 'adventrue'
-# cat = 'romance'
-# cat = 'humor'
 
-fid = brown.fileids(categories=cat)
-docs = []
-for f in fid:
-    docs.append(brown.words(fileids=[f]))
+if not cat2:
+    fid = brown.fileids(categories=cat)
+    docs = []
+    for f in fid:
+        docs.append(brown.words(fileids=[f]))
+
+else:
+    docs = []
+    docs.append(brown.words(categories=cat))
+    docs.append(brown.words(categories=cat2))
+
+
+
 N = len(docs)
 all_words = ''
 for doc in docs:
@@ -108,10 +144,5 @@ idf_matrix = get_idf_matrix(word_matrix, docs, N)
 tf_matrix = get_tf_matrix(word_matrix, docs)
 w_matrix = get_w_matrix(idf_matrix, tf_matrix)
 
-# To compare different documents within the cluster change the index
-# value for doc1 and doc2
-
-doc1 = 0
-doc2 = 1
 print(cosine(w_matrix[doc1], w_matrix[doc2]))
 
