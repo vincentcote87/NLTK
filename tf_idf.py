@@ -49,7 +49,6 @@ doc2 = 1
 
 def get_word_matrix(words):
     list = []
-    # print(words)
     words = word_tokenize(words)
     for w in FreqDist(words):
         list.append(w)
@@ -62,7 +61,6 @@ def get_idf_matrix(wrd_matrix, documents, n):
     list = []
     doc_dist = []
     for d in documents:
-        # doc_dist.append(FreqDist(word_tokenize(d)))
         doc_dist.append(FreqDist(d))
     for word in wrd_matrix:
         count = 0
@@ -84,7 +82,6 @@ def get_tf_matrix(wrd_matrix, documents):
         for w in wrd_matrix:
             count = doc_freq[w]
             tf = 1 + math.log10(count) if count > 0 else 0
-            # tf = get_tf(w,d)
             doc_list.append(tf)
         list.append(doc_list)
     return list
@@ -118,8 +115,6 @@ def cosine(d1,d2):
         i += 1
     return (sum/(math.sqrt(d1d) * math.sqrt(d2d))) if d1d > 0 or d2d > 0 else 0
 
-
-
 if not cat2:
     fid = brown.fileids(categories=cat)
     docs = []
@@ -131,8 +126,6 @@ else:
     docs.append(brown.words(categories=cat))
     docs.append(brown.words(categories=cat2))
 
-
-
 N = len(docs)
 all_words = ''
 for doc in docs:
@@ -143,6 +136,4 @@ word_matrix = get_word_matrix(all_words)
 idf_matrix = get_idf_matrix(word_matrix, docs, N)
 tf_matrix = get_tf_matrix(word_matrix, docs)
 w_matrix = get_w_matrix(idf_matrix, tf_matrix)
-
 print(cosine(w_matrix[doc1], w_matrix[doc2]))
-
